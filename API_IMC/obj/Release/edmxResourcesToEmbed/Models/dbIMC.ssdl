@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblGenders">
+    <Key>
+      <PropertyRef Name="intPkIdGender" />
+    </Key>
+    <Property Name="intPkIdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblHistoricalEvaluations">
+    <Key>
+      <PropertyRef Name="intPkIdEvaluation" />
+    </Key>
+    <Property Name="intPkIdEvaluation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="intConsultationNumber" Type="int" Nullable="false" />
+    <Property Name="intFkIdUser" Type="int" Nullable="false" />
+    <Property Name="intFKIdGender" Type="int" Nullable="false" />
+    <Property Name="intUserAge" Type="int" Nullable="false" />
+    <Property Name="fltWeight" Type="float" Nullable="false" />
+    <Property Name="fltHeight" Type="float" Nullable="false" />
+    <Property Name="strBodyType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fltBodyMass" Type="float" Nullable="false" />
+    <Property Name="strObservations" Type="varchar" MaxLength="500" />
+    <Property Name="dtmEvaluationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoles">
+    <Key>
+      <PropertyRef Name="intPkIdRol" />
+    </Key>
+    <Property Name="intPkIdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strDescription" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="intPkIdUser" />
+    </Key>
+    <Property Name="intPkIdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strIdentification" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="strUserName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="strPassword" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="strName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="strLastName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="intFkIdRol" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tblHistor__intFk__6FE99F9F">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblHistoricalEvaluations" Type="Self.tblHistoricalEvaluations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="intPkIdUser" />
+      </Principal>
+      <Dependent Role="tblHistoricalEvaluations">
+        <PropertyRef Name="intFkIdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblHistor__intFK__70DDC3D8">
+    <End Role="tblGenders" Type="Self.tblGenders" Multiplicity="1" />
+    <End Role="tblHistoricalEvaluations" Type="Self.tblHistoricalEvaluations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGenders">
+        <PropertyRef Name="intPkIdGender" />
+      </Principal>
+      <Dependent Role="tblHistoricalEvaluations">
+        <PropertyRef Name="intFKIdGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblUsers__intFkI__693CA210">
+    <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoles">
+        <PropertyRef Name="intPkIdRol" />
+      </Principal>
+      <Dependent Role="tblUsers">
+        <PropertyRef Name="intFkIdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IMCModelStoreContainer">
+    <EntitySet Name="tblGenders" EntityType="Self.tblGenders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblHistoricalEvaluations" EntityType="Self.tblHistoricalEvaluations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblHistor__intFk__6FE99F9F" Association="Self.FK__tblHistor__intFk__6FE99F9F">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblHistor__intFK__70DDC3D8" Association="Self.FK__tblHistor__intFK__70DDC3D8">
+      <End Role="tblGenders" EntitySet="tblGenders" />
+      <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblUsers__intFkI__693CA210" Association="Self.FK__tblUsers__intFkI__693CA210">
+      <End Role="tblRoles" EntitySet="tblRoles" />
+      <End Role="tblUsers" EntitySet="tblUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

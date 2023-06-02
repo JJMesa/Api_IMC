@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IMCModelStoreContainer" CdmEntityContainer="IMCEntities">
+    <EntitySetMapping Name="tblGenders">
+      <EntityTypeMapping TypeName="IMCModel.tblGenders">
+        <MappingFragment StoreEntitySet="tblGenders">
+          <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+          <ScalarProperty Name="intPkIdGender" ColumnName="intPkIdGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHistoricalEvaluations">
+      <EntityTypeMapping TypeName="IMCModel.tblHistoricalEvaluations">
+        <MappingFragment StoreEntitySet="tblHistoricalEvaluations">
+          <ScalarProperty Name="dtmEvaluationDate" ColumnName="dtmEvaluationDate" />
+          <ScalarProperty Name="strObservations" ColumnName="strObservations" />
+          <ScalarProperty Name="fltBodyMass" ColumnName="fltBodyMass" />
+          <ScalarProperty Name="strBodyType" ColumnName="strBodyType" />
+          <ScalarProperty Name="fltHeight" ColumnName="fltHeight" />
+          <ScalarProperty Name="fltWeight" ColumnName="fltWeight" />
+          <ScalarProperty Name="intUserAge" ColumnName="intUserAge" />
+          <ScalarProperty Name="intFKIdGender" ColumnName="intFKIdGender" />
+          <ScalarProperty Name="intFkIdUser" ColumnName="intFkIdUser" />
+          <ScalarProperty Name="intConsultationNumber" ColumnName="intConsultationNumber" />
+          <ScalarProperty Name="intPkIdEvaluation" ColumnName="intPkIdEvaluation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="IMCModel.tblRoles">
+        <MappingFragment StoreEntitySet="tblRoles">
+          <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+          <ScalarProperty Name="intPkIdRol" ColumnName="intPkIdRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="IMCModel.tblUsers">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="intFkIdRol" ColumnName="intFkIdRol" />
+          <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+          <ScalarProperty Name="strUserName" ColumnName="strUserName" />
+          <ScalarProperty Name="strIdentification" ColumnName="strIdentification" />
+          <ScalarProperty Name="intPkIdUser" ColumnName="intPkIdUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

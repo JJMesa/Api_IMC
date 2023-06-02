@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="786cc34e35834d2aa5e7372755f24c67" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="IMCModel.tblGenders" Width="2.125" PointX="9.5" PointY="1.75" />
+        <EntityTypeShape EntityType="IMCModel.tblHistoricalEvaluations" Width="2.125" PointX="6.25" PointY="1.125" />
+        <EntityTypeShape EntityType="IMCModel.tblRoles" Width="1.75" PointX="0.5" PointY="2" />
+        <EntityTypeShape EntityType="IMCModel.tblUsers" Width="2.125" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="IMCModel.FK__tblHistor__intFK__70DDC3D8" />
+        <AssociationConnector Association="IMCModel.FK__tblHistor__intFk__6FE99F9F" />
+        <AssociationConnector Association="IMCModel.FK__tblUsers__intFkI__693CA210" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

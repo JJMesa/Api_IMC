@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblGenders">
+          <Key>
+            <PropertyRef Name="intPkIdGender" />
+          </Key>
+          <Property Name="intPkIdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHistoricalEvaluations">
+          <Key>
+            <PropertyRef Name="intPkIdEvaluation" />
+          </Key>
+          <Property Name="intPkIdEvaluation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intConsultationNumber" Type="int" Nullable="false" />
+          <Property Name="intFkIdUser" Type="int" Nullable="false" />
+          <Property Name="intFKIdGender" Type="int" Nullable="false" />
+          <Property Name="intUserAge" Type="int" Nullable="false" />
+          <Property Name="fltWeight" Type="float" Nullable="false" />
+          <Property Name="fltHeight" Type="float" Nullable="false" />
+          <Property Name="strBodyType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fltBodyMass" Type="float" Nullable="false" />
+          <Property Name="strObservations" Type="varchar" MaxLength="500" />
+          <Property Name="dtmEvaluationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="intPkIdRol" />
+          </Key>
+          <Property Name="intPkIdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strDescription" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="intPkIdUser" />
+          </Key>
+          <Property Name="intPkIdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strIdentification" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="strUserName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="strPassword" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="strName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="strLastName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="intFkIdRol" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblHistor__intFk__6FE99F9F">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblHistoricalEvaluations" Type="Self.tblHistoricalEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="intPkIdUser" />
+            </Principal>
+            <Dependent Role="tblHistoricalEvaluations">
+              <PropertyRef Name="intFkIdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHistor__intFK__70DDC3D8">
+          <End Role="tblGenders" Type="Self.tblGenders" Multiplicity="1" />
+          <End Role="tblHistoricalEvaluations" Type="Self.tblHistoricalEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenders">
+              <PropertyRef Name="intPkIdGender" />
+            </Principal>
+            <Dependent Role="tblHistoricalEvaluations">
+              <PropertyRef Name="intFKIdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intFkI__693CA210">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intPkIdRol" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="intFkIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMCModelStoreContainer">
+          <EntitySet Name="tblGenders" EntityType="Self.tblGenders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHistoricalEvaluations" EntityType="Self.tblHistoricalEvaluations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblHistor__intFk__6FE99F9F" Association="Self.FK__tblHistor__intFk__6FE99F9F">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHistor__intFK__70DDC3D8" Association="Self.FK__tblHistor__intFK__70DDC3D8">
+            <End Role="tblGenders" EntitySet="tblGenders" />
+            <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intFkI__693CA210" Association="Self.FK__tblUsers__intFkI__693CA210">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IMCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IMCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblGenders" EntityType="IMCModel.tblGenders" />
+          <EntitySet Name="tblHistoricalEvaluations" EntityType="IMCModel.tblHistoricalEvaluations" />
+          <EntitySet Name="tblRoles" EntityType="IMCModel.tblRoles" />
+          <EntitySet Name="tblUsers" EntityType="IMCModel.tblUsers" />
+          <AssociationSet Name="FK__tblHistor__intFK__70DDC3D8" Association="IMCModel.FK__tblHistor__intFK__70DDC3D8">
+            <End Role="tblGenders" EntitySet="tblGenders" />
+            <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHistor__intFk__6FE99F9F" Association="IMCModel.FK__tblHistor__intFk__6FE99F9F">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblHistoricalEvaluations" EntitySet="tblHistoricalEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__intFkI__693CA210" Association="IMCModel.FK__tblUsers__intFkI__693CA210">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblGenders">
+          <Key>
+            <PropertyRef Name="intPkIdGender" />
+          </Key>
+          <Property Name="intPkIdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblHistoricalEvaluations" Relationship="IMCModel.FK__tblHistor__intFK__70DDC3D8" FromRole="tblGenders" ToRole="tblHistoricalEvaluations" />
+        </EntityType>
+        <EntityType Name="tblHistoricalEvaluations">
+          <Key>
+            <PropertyRef Name="intPkIdEvaluation" />
+          </Key>
+          <Property Name="intPkIdEvaluation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intConsultationNumber" Type="Int32" Nullable="false" />
+          <Property Name="intFkIdUser" Type="Int32" Nullable="false" />
+          <Property Name="intFKIdGender" Type="Int32" Nullable="false" />
+          <Property Name="intUserAge" Type="Int32" Nullable="false" />
+          <Property Name="fltWeight" Type="Double" Nullable="false" />
+          <Property Name="fltHeight" Type="Double" Nullable="false" />
+          <Property Name="strBodyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fltBodyMass" Type="Double" Nullable="false" />
+          <Property Name="strObservations" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="dtmEvaluationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblGenders" Relationship="IMCModel.FK__tblHistor__intFK__70DDC3D8" FromRole="tblHistoricalEvaluations" ToRole="tblGenders" />
+          <NavigationProperty Name="tblUsers" Relationship="IMCModel.FK__tblHistor__intFk__6FE99F9F" FromRole="tblHistoricalEvaluations" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="intPkIdRol" />
+          </Key>
+          <Property Name="intPkIdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUsers" Relationship="IMCModel.FK__tblUsers__intFkI__693CA210" FromRole="tblRoles" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="intPkIdUser" />
+          </Key>
+          <Property Name="intPkIdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strIdentification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strUserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="strPassword" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="strName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="strLastName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="intFkIdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblHistoricalEvaluations" Relationship="IMCModel.FK__tblHistor__intFk__6FE99F9F" FromRole="tblUsers" ToRole="tblHistoricalEvaluations" />
+          <NavigationProperty Name="tblRoles" Relationship="IMCModel.FK__tblUsers__intFkI__693CA210" FromRole="tblUsers" ToRole="tblRoles" />
+        </EntityType>
+        <Association Name="FK__tblHistor__intFK__70DDC3D8">
+          <End Type="IMCModel.tblGenders" Role="tblGenders" Multiplicity="1" />
+          <End Type="IMCModel.tblHistoricalEvaluations" Role="tblHistoricalEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenders">
+              <PropertyRef Name="intPkIdGender" />
+            </Principal>
+            <Dependent Role="tblHistoricalEvaluations">
+              <PropertyRef Name="intFKIdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHistor__intFk__6FE99F9F">
+          <End Type="IMCModel.tblUsers" Role="tblUsers" Multiplicity="1" />
+          <End Type="IMCModel.tblHistoricalEvaluations" Role="tblHistoricalEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="intPkIdUser" />
+            </Principal>
+            <Dependent Role="tblHistoricalEvaluations">
+              <PropertyRef Name="intFkIdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__intFkI__693CA210">
+          <End Type="IMCModel.tblRoles" Role="tblRoles" Multiplicity="1" />
+          <End Type="IMCModel.tblUsers" Role="tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="intPkIdRol" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="intFkIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IMCModelStoreContainer" CdmEntityContainer="IMCEntities">
+          <EntitySetMapping Name="tblGenders">
+            <EntityTypeMapping TypeName="IMCModel.tblGenders">
+              <MappingFragment StoreEntitySet="tblGenders">
+                <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+                <ScalarProperty Name="intPkIdGender" ColumnName="intPkIdGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHistoricalEvaluations">
+            <EntityTypeMapping TypeName="IMCModel.tblHistoricalEvaluations">
+              <MappingFragment StoreEntitySet="tblHistoricalEvaluations">
+                <ScalarProperty Name="dtmEvaluationDate" ColumnName="dtmEvaluationDate" />
+                <ScalarProperty Name="strObservations" ColumnName="strObservations" />
+                <ScalarProperty Name="fltBodyMass" ColumnName="fltBodyMass" />
+                <ScalarProperty Name="strBodyType" ColumnName="strBodyType" />
+                <ScalarProperty Name="fltHeight" ColumnName="fltHeight" />
+                <ScalarProperty Name="fltWeight" ColumnName="fltWeight" />
+                <ScalarProperty Name="intUserAge" ColumnName="intUserAge" />
+                <ScalarProperty Name="intFKIdGender" ColumnName="intFKIdGender" />
+                <ScalarProperty Name="intFkIdUser" ColumnName="intFkIdUser" />
+                <ScalarProperty Name="intConsultationNumber" ColumnName="intConsultationNumber" />
+                <ScalarProperty Name="intPkIdEvaluation" ColumnName="intPkIdEvaluation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="IMCModel.tblRoles">
+              <MappingFragment StoreEntitySet="tblRoles">
+                <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+                <ScalarProperty Name="intPkIdRol" ColumnName="intPkIdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="IMCModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="intFkIdRol" ColumnName="intFkIdRol" />
+                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+                <ScalarProperty Name="strUserName" ColumnName="strUserName" />
+                <ScalarProperty Name="strIdentification" ColumnName="strIdentification" />
+                <ScalarProperty Name="intPkIdUser" ColumnName="intPkIdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
